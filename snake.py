@@ -114,7 +114,7 @@ while not done:
     
     if snake.head == apple_coord:
         snake.grow()
-        apple_coord = [randint(1, board_l-1), randint(1, board_l-1)]
+        apple_coord = [randint(1, board_l-2), randint(1, board_l-2)]
 
 
     if snake.shoud_be_dead():
@@ -123,10 +123,11 @@ while not done:
         snake = Snake()
 
     screen.fill((0, 0, 0))
-    for segment in snake.segments:
-        pygame.draw.rect(screen, (255, 255, 255), pygame.Rect((segment[0]-0.5) * scaling, res - ((segment[1]-0.5) * scaling), 1*scaling, 1*scaling))
+    pygame.draw.rect(screen, (16, 117, 29), pygame.Rect((snake.segments[0][0]-0.5) * scaling, res - ((snake.segments[0][1]-0.5) * scaling), 1*scaling, 1*scaling))
+    for segment in snake.segments[1:]:
+        pygame.draw.rect(screen, (7, 79, 16), pygame.Rect((segment[0]-0.5) * scaling, res - ((segment[1]-0.5) * scaling), 1*scaling, 1*scaling))
     
-    pygame.draw.circle(screen, (255, 0, 0), [(apple_coord[0]-0.5) * scaling, res - (apple_coord[1]-0.5) * scaling], 0.5 * scaling)
+    pygame.draw.circle(screen, (168, 0, 0), [(apple_coord[0]) * scaling, res - (apple_coord[1] - 1) * scaling], 0.5 * scaling)
 
     pygame.display.update()
 
